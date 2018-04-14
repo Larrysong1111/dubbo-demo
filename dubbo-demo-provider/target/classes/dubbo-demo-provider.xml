@@ -15,7 +15,11 @@
 	<!-- 用dubbo协议在20880端口暴露服务 -->
 	<dubbo:protocol name="dubbo" port="20880" />
 	<!--使用 dubbo 协议实现定义好的 api.PermissionService 接口 -->
-	<dubbo:service interface="com.song.dubbo.dubbo_demo_api.UserService" ref="userService" protocol="dubbo"></dubbo:service>
+	<dubbo:service interface="com.song.dubbo.dubbo_demo_api.UserService" ref="userService" protocol="dubbo">
+		<dubbo:method name="getAsynUsersCallback">
+			<dubbo:argument index="1" callback="true"/>
+		</dubbo:method>
+	</dubbo:service>
 
 	<bean id="userService"
 		class="com.song.dubbo.dubbo_demo_provider.UserServiceImpl"></bean>
